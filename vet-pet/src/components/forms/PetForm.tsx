@@ -33,7 +33,7 @@ const petSchema = z.object({
   oname: z
     .string()
     .min(2, { message: "First name must be at least 2 characters long" }),
-  adress: z
+  street: z
     .string()
     .min(2, { message: "Adress must be at least 2 characters long" }),
   phone: z.number({ invalid_type_error: "Please add a valid number" }),
@@ -121,12 +121,12 @@ export default function PetForm() {
         </FormLabel>
         <Input
           id="adress"
-          placeholder="Adress"
-          {...register("adress")}
+          placeholder="Street"
+          {...register("street")}
           type="text"
         />
-        {errors.adress && (
-          <p style={{ color: "red" }}>{errors.adress.message}</p>
+        {errors.street && (
+          <p style={{ color: "red" }}>{errors.street.message}</p>
         )}
 
         <FormLabel htmlFor="phone" pt={2}>
@@ -136,7 +136,7 @@ export default function PetForm() {
           id="phone"
           placeholder="Phone"
           {...register("phone", { valueAsNumber: true })}
-          type="text"
+          type="number"
         />
         {errors.phone && <p style={{ color: "red" }}>{errors.phone.message}</p>}
 
