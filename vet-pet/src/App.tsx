@@ -85,6 +85,11 @@ const MainContent = () => {
           >
             Navigation
             <Box>
+              <Button bg="green.100" size="sm" onClick={handleDefaultView}>
+                Back to main
+              </Button>
+            </Box>
+            <Box>
               <Button bg="green.100" size="sm" onClick={handleRegistrationForm}>
                 Pet form
               </Button>
