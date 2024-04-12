@@ -1,14 +1,27 @@
+import React, { useState } from "react";
 import { Box, Button, Grid, GridItem, HStack, Input } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
 import PetForm from "./components/forms/PetForm";
+import FilterLists from "./components/lists/FilterLists";
 import LoginPage from "./components/auth/LoginPage";
-function App() {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  const [isPetFormVisible, setPetForm] = useState(false);
 
-  const handleRegistrationForm = useCallback(() => {
-    setPetForm((prev) => !prev);
-  }, []);
+const MainContent = () => {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isPetFormVisible, setIsPetFormVisible] = useState(false);
+  const [isListsVisible, setIsListsVisible] = useState(false);
+
+  const [showComponent, setShowComponent] = useState("default");
+
+  const handleRegistrationForm = () => {
+    setShowComponent("form");
+  };
+
+  const handleLists = () => {
+    setShowComponent("lists");
+  };
+
+  const handleDefaultView = () => {
+    setShowComponent("default");
+  };
 
   const handleLogin = () => {
     setAuthenticated(true);
@@ -60,6 +73,7 @@ function App() {
               </Box>
             </HStack>
           </GridItem>
+
           <GridItem
             pl="2"
             area={"nav"}
@@ -73,6 +87,11 @@ function App() {
             <Box>
               <Button bg="green.100" size="sm" onClick={handleRegistrationForm}>
                 Pet form
+              </Button>
+            </Box>
+            <Box>
+              <Button bg="green.100" size="sm" onClick={handleLists}>
+                Lists
               </Button>
             </Box>
             <Box>
@@ -90,14 +109,22 @@ function App() {
             fontSize="1.2rem"
             bg="white"
           >
-            {isPetFormVisible ? (
+            {showComponent === "form" && (
               <>
                 Pet Form
                 <Box p={4}>
                   <PetForm />
                 </Box>
               </>
-            ) : (
+            )}
+            {showComponent === "lists" && (
+              <>
+                <Box p={4}>
+                  <FilterLists />
+                </Box>
+              </>
+            )}
+            {showComponent === "default" && (
               <Box>
                 If your pet is ill, please fill out the form to the left
               </Box>
@@ -109,6 +136,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
-export default App;
+export default MainContent;
