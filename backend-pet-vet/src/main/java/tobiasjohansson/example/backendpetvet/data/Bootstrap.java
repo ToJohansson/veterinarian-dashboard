@@ -44,11 +44,15 @@ public class Bootstrap implements CommandLineRunner {
         Pet pet1 = new Pet();
         pet1.setName("Barbro");
         pet1.setAge(3);
+        pet1.setGender("female");
+        pet1.setComment("broke a tooth");
         petRepository.save(pet1);
 
         Pet pet2 = new Pet();
         pet2.setName("Spencer");
         pet2.setAge(1);
+        pet2.setGender("male");
+        pet2.setComment("anxious");
         petRepository.save(pet2);
 
         // ADD ADDRESSES AND PETS AND OWNERS TO PERSISTED MODELS

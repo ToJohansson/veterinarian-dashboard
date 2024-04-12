@@ -3,18 +3,14 @@ import { instance } from "../../services/AxiosInstance";
 import {
   Box,
   Grid,
-  ListItem,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
   Text,
-  Tfoot,
   Th,
   Thead,
   Tr,
-  UnorderedList,
 } from "@chakra-ui/react";
 
 interface Owner {
@@ -27,6 +23,8 @@ interface Owner {
   pets: {
     name: string;
     age: number;
+    gender: string;
+    comment: string;
   };
 }
 
@@ -97,7 +95,13 @@ const OwnerList = () => {
                           <strong>Pet Name:</strong> {owner.pets.name}
                         </Text>
                         <Text>
-                          <strong>Pet Age:</strong> {owner.pets.age}
+                          <strong>Age:</strong> {owner.pets.age}
+                        </Text>
+                        <Text>
+                          <strong>Gender:</strong> {owner.pets.gender}
+                        </Text>
+                        <Text>
+                          <strong>Comment:</strong> {owner.pets.comment}
                         </Text>
                       </Box>
                     </Grid>

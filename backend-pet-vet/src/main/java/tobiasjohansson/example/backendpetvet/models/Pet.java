@@ -15,6 +15,8 @@ public class Pet {
     @Column(length = 100, nullable = false)
     private int age;
 
+    private String comment;
+    private String gender;
 
     public Pet() {
     }
@@ -46,4 +48,19 @@ public class Pet {
         this.age = age;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }
