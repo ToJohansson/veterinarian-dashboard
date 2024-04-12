@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { instance } from "../../services/AxiosInstance";
 import {
   Box,
+  Grid,
   ListItem,
   Table,
   TableCaption,
@@ -79,23 +80,27 @@ const OwnerList = () => {
               {expandedOwner === owner.ownerId && (
                 <Tr>
                   <Td colSpan={4}>
-                    <Box p={4}>
-                      <Text>
-                        <strong>Owner ID:</strong> {owner.ownerId}
-                      </Text>
-                      <Text>
-                        <strong>Address:</strong> {owner.address.street}
-                      </Text>
-                      <Text>
-                        <strong>Phone:</strong> {owner.address.phone}
-                      </Text>
-                      <Text>
-                        <strong>Pet Name:</strong> {owner.pets.name}
-                      </Text>
-                      <Text>
-                        <strong>Pet Age:</strong> {owner.pets.age}
-                      </Text>
-                    </Box>
+                    <Grid templateColumns="1fr 1fr" gap={4}>
+                      <Box p={4}>
+                        <Text>
+                          <strong>Owner ID:</strong> {owner.ownerId}
+                        </Text>
+                        <Text>
+                          <strong>Address:</strong> {owner.address.street}
+                        </Text>
+                        <Text>
+                          <strong>Phone:</strong> {owner.address.phone}
+                        </Text>
+                      </Box>
+                      <Box p={4}>
+                        <Text>
+                          <strong>Pet Name:</strong> {owner.pets.name}
+                        </Text>
+                        <Text>
+                          <strong>Pet Age:</strong> {owner.pets.age}
+                        </Text>
+                      </Box>
+                    </Grid>
                   </Td>
                 </Tr>
               )}

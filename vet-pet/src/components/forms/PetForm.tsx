@@ -1,6 +1,7 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { PhoneIcon } from "@chakra-ui/icons";
 import {
   FormLabel,
   FormControl,
@@ -19,6 +20,10 @@ import {
   RadioGroup,
   Stack,
   Radio,
+  Text,
+  Flex,
+  Spacer,
+  Icon,
 } from "@chakra-ui/react";
 
 const petSchema = z.object({
@@ -148,11 +153,29 @@ export default function PetForm() {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Thank you</ModalHeader>
+          <ModalHeader>Thank You for Trusting Us!</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Your pet has been registred! </ModalBody>
+          <ModalBody>
+            <Text>Your pet has been successfully registered with us! 🐾</Text>
+            <Text mt={4}>
+              We're thrilled to be a part of your pet's healthcare journey. Rest
+              assured, our team of experienced veterinarians will provide the
+              best care possible for your furry companion.
+            </Text>
+            <Text mt={4}>
+              If you have any questions or concerns, don't hesitate to reach out
+              to us. We're here to ensure your pet's well-being and happiness.
+            </Text>
+          </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
+            <Flex alignItems="center">
+              <Icon as={PhoneIcon} boxSize={5} mr={2} />
+              <Text>(555) 123-4567</Text>
+            </Flex>
+            <Spacer />
+            <Button onClick={onClose} colorScheme="green">
+              Close
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

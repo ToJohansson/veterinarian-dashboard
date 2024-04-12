@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, Grid, GridItem, HStack, Input } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Button,
+  Grid,
+  GridItem,
+  HStack,
+  Input,
+} from "@chakra-ui/react";
 import PetForm from "./components/forms/PetForm";
 import FilterLists from "./components/lists/FilterLists";
 import LoginPage from "./components/auth/LoginPage";
@@ -74,37 +82,66 @@ const MainContent = () => {
             </HStack>
           </GridItem>
 
-          <GridItem
-            pl="2"
-            area={"nav"}
-            borderRadius="md"
-            p="2"
-            m="1"
-            fontSize="1.2rem"
-            bg="white"
-          >
-            Navigation
-            <Box>
-              <Button bg="green.100" size="sm" onClick={handleDefaultView}>
-                Back to main
-              </Button>
-            </Box>
-            <Box>
-              <Button bg="green.100" size="sm" onClick={handleRegistrationForm}>
-                Pet form
-              </Button>
-            </Box>
-            <Box>
-              <Button bg="green.100" size="sm" onClick={handleLists}>
-                Lists
-              </Button>
-            </Box>
-            <Box>
-              <Button bg="blue.200" size="sm" onClick={logoutAuth}>
-                Logout
-              </Button>
-            </Box>
-          </GridItem>
+          <Box position="relative">
+            <GridItem
+              pl="2"
+              area={"nav"}
+              borderRadius="md"
+              p="2"
+              m="1"
+              fontSize="1.2rem"
+              bg="white"
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-between"
+              height="100%"
+            >
+              <Box>
+                <Box>
+                  <Text fontWeight="bold">Navigation</Text>
+                </Box>
+                <Box>
+                  <Button
+                    mt={6}
+                    bg="green.100"
+                    size="sm"
+                    onClick={handleDefaultView}
+                    w="100%"
+                  >
+                    Start
+                  </Button>
+                </Box>
+                <Box>
+                  <Button
+                    mt={2}
+                    bg="green.100"
+                    size="sm"
+                    onClick={handleRegistrationForm}
+                    w="100%"
+                  >
+                    Pet form
+                  </Button>
+                </Box>
+                <Box>
+                  <Button
+                    mt={2}
+                    bg="green.100"
+                    size="sm"
+                    onClick={handleLists}
+                    w="100%"
+                  >
+                    Lists
+                  </Button>
+                </Box>
+              </Box>
+              <Box mb={2}>
+                <Button bg="blue.200" size="sm" onClick={logoutAuth}>
+                  Logout
+                </Button>
+              </Box>
+            </GridItem>
+          </Box>
+
           <GridItem
             pl="2"
             area={"main"}
@@ -130,8 +167,35 @@ const MainContent = () => {
               </>
             )}
             {showComponent === "default" && (
-              <Box>
-                If your pet is ill, please fill out the form to the left
+              <Box p={4} m={4}>
+                <Text fontSize="lg" fontWeight="bold" mb={4}>
+                  Welcome to PetVet!
+                </Text>
+                <Text mb={4}>
+                  We're delighted to welcome you and your furry friend to our
+                  online home. At PetVet, we understand that your pet is more
+                  than just an animal—they're a cherished member of your family.
+                </Text>
+                <Text mb={4}>
+                  Whether it's a routine check-up, an unexpected ailment, or
+                  simply seeking advice on how to keep your pet healthy and
+                  happy, we're here to provide compassionate care and expert
+                  guidance every step of the way.
+                </Text>
+                <Text mb={4}>
+                  Feel free to explore our website and learn more about our
+                  services, our dedicated team, and the personalized care we
+                  offer to pets of all shapes and sizes.
+                </Text>
+                <Text mb={4}>
+                  Don't hesitate to reach out if you have any questions or
+                  concerns. We're here to make sure your pet receives the best
+                  care possible.
+                </Text>
+                <Text>
+                  Thank you for choosing PetVet. We can't wait to meet you and
+                  your beloved companion!
+                </Text>
               </Box>
             )}
           </GridItem>
