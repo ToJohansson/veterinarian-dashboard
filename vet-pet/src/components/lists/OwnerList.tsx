@@ -16,6 +16,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { deleteOwner } from "../../services/api/crud-owner";
 
 interface Owner {
   ownerId: number;
@@ -56,6 +57,23 @@ const OwnerList = () => {
     }
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      // Optimistically remove the owner from the list
+      const updatedOwners = ownerList.filter((owner) => owner.ownerId !== id);
+      setOwners(updatedOwners);
+
+      // Send the delete request
+      await deleteOwner(id);
+    } catch (error) {
+      // If deletion fails, revert the UI state
+      setOwners((prevOwners) => [...prevOwners]); // Reset ownerList to its previous state
+
+      // Handle errors, maybe show an error message to the user
+      console.error("Error deleting owner:", error);
+    }
+  };
+
   return (
     <TableContainer>
       <Table variant="striped" colorScheme="teal">
@@ -68,7 +86,7 @@ const OwnerList = () => {
           </Thead>
         )}
         <Tbody>
-          {ownerList.map((owner, index) => (
+          {ownerList.map((owner) => (
             <React.Fragment key={owner.ownerId}>
               {!expandedOwner && (
                 <Tr
@@ -114,7 +132,10 @@ const OwnerList = () => {
                       </Text>
                     </Box>
                   </Grid>
-                  <Button bg="red.400" onClick={() => console.log("deleted")}>
+                  <Button
+                    bg="red.400"
+                    onClick={() => handleDelete(owner.ownerId)}
+                  >
                     Delete
                   </Button>
                 </Td>
