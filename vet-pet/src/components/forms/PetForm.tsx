@@ -180,27 +180,19 @@ export default function PetForm() {
           Submit
         </Button>
       </FormControl>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <Modal size="md" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Thank You for Trusting Us!</ModalHeader>
+          <ModalHeader>Success!</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Your pet has been successfully registered with us! 🐾</Text>
-            <Text mt={4}>
-              We're thrilled to be a part of your pet's healthcare journey. Rest
-              assured, our team of experienced veterinarians will provide the
-              best care possible for your furry companion.
-            </Text>
-            <Text mt={4}>
-              If you have any questions or concerns, don't hesitate to reach out
-              to us. We're here to ensure your pet's well-being and happiness.
-            </Text>
+            <Text>Pet has been successfully registered with us! 🐾</Text>
+            <Text>You can look at the form in the Appointments tab 🐾</Text>
           </ModalBody>
           <ModalFooter>
             <Flex alignItems="center">
               <Icon as={PhoneIcon} boxSize={5} mr={2} />
-              <Text>(555) 123-4567</Text>
+              <Text>(555) 123-4567: call support</Text>
             </Flex>
             <Spacer />
             <Button onClick={onClose} colorScheme="green">
