@@ -25,6 +25,7 @@ import {
   Spacer,
   Icon,
 } from "@chakra-ui/react";
+import { postOwner, putOwner } from "../../services/api/crud-owner";
 
 const petSchema = z.object({
   pname: z
@@ -55,10 +56,39 @@ export default function PetForm() {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(petSchema) });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log("submitting the form", data);
-    onOpen();
-    reset();
+  const onSubmit = async (data: FieldValues) => {
+    const ownerData = { name: data.oname };
+    const adressData = {
+      street: data.street,
+      phone: data.phone,
+    };
+    const petData = {
+      name: data.pname,
+      age: data.age,
+      gender: data.gender,
+      comment: data.comment,
+    };
+
+    try {
+      const resData = await postOwner(ownerData);
+      const putData = {
+        id: resData.ownerId,
+        name: resData.name,
+        address: { street: adressData.street, phone: adressData.phone },
+        pets: {
+          name: petData.name,
+          age: petData.age,
+          gender: petData.gender,
+          comment: petData.comment,
+        },
+      };
+      await putOwner(putData);
+
+      onOpen();
+      reset();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

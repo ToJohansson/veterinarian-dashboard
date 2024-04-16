@@ -44,10 +44,6 @@ const OwnerList = () => {
       .catch((err) => console.log(err));
   }, [handleSetOwners]);
 
-  useEffect(() => {
-    console.log(ownerList);
-  }, [ownerList]);
-
   const toggleExpandedOwner = (ownerId: any) => {
     if (expandedOwner === ownerId) {
       setExpandedOwner(null);
@@ -73,7 +69,7 @@ const OwnerList = () => {
                 style={{ cursor: "pointer" }}
               >
                 <Td>{owner.name}</Td>
-                <Td>{owner.pets.name}</Td>
+                <Td>{owner.pets ? owner.pets.name : "No pet"}</Td>
               </Tr>
               {expandedOwner === owner.ownerId && (
                 <Tr>
