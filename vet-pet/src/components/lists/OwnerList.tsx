@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { instance } from "../../services/AxiosInstance";
 import {
   Box,
+  Button,
   FormLabel,
   Grid,
   Table,
@@ -113,6 +114,9 @@ const OwnerList = () => {
                       </Text>
                     </Box>
                   </Grid>
+                  <Button bg="red.400" onClick={() => console.log("deleted")}>
+                    Delete
+                  </Button>
                 </Td>
               )}
             </React.Fragment>
