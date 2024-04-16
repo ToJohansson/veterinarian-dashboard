@@ -83,7 +83,7 @@ const MainContent = () => {
                   ></Input>
                 </Box>
                 <Box>
-                  <b>Welcome to PetVet</b>
+                  <b>Admin dashboard</b>
                 </Box>
               </HStack>
             </GridItem>
@@ -125,7 +125,7 @@ const MainContent = () => {
                       onClick={handleRegistrationForm}
                       w="100%"
                     >
-                      Pet form
+                      New Appointment
                     </Button>
                   </Box>
                   <Box>
@@ -136,7 +136,7 @@ const MainContent = () => {
                       onClick={handleLists}
                       w="100%"
                     >
-                      Lists
+                      Appointments
                     </Button>
                   </Box>
                 </Box>
@@ -175,33 +175,28 @@ const MainContent = () => {
               {showComponent === "default" && (
                 <Box p={4} m={4}>
                   <Text fontSize="lg" fontWeight="bold" mb={4}>
-                    Welcome to PetVet!
+                    Welcome to PetVet Admin dashboard!
                   </Text>
                   <Text mb={4}>
-                    We're delighted to welcome you and your furry friend to our
-                    online home. At PetVet, we understand that your pet is more
-                    than just an animal—they're a cherished member of your
-                    family.
+                    Here, administrators and support staff have the tools at
+                    their fingertips to efficiently manage appointments and
+                    ensure seamless operations.
                   </Text>
                   <Text mb={4}>
-                    Whether it's a routine check-up, an unexpected ailment, or
-                    simply seeking advice on how to keep your pet healthy and
-                    happy, we're here to provide compassionate care and expert
-                    guidance every step of the way.
+                    To get started, use the navigation bar on the right.
                   </Text>
                   <Text mb={4}>
-                    Feel free to explore our website and learn more about our
-                    services, our dedicated team, and the personalized care we
-                    offer to pets of all shapes and sizes.
+                    Click on the 'New Appointment' button to create a new
+                    booking, or select 'Appointments' to view a comprehensive
+                    list of scheduled visits.
+                  </Text>
+                  <Text mb={4}>Need to go back?</Text>
+                  <Text mb={4}>
+                    Simply hit the 'Start' button to return to the start.
                   </Text>
                   <Text mb={4}>
-                    Don't hesitate to reach out if you have any questions or
-                    concerns. We're here to make sure your pet receives the best
-                    care possible.
-                  </Text>
-                  <Text>
-                    Thank you for choosing PetVet. We can't wait to meet you and
-                    your beloved companion!
+                    Let'smake caring for our animal companions as smooth as
+                    possible.
                   </Text>
                 </Box>
               )}
