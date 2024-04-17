@@ -19,8 +19,13 @@ Now start the frontend application.
 Its a Vite project and uses npm.
 It runs on port 5173. 
 
+## How to login
+username = admin
+password = admin
+
 ## Roadmap
-add authorization for the loginpage
+add global state, redux.
+creating new admins
 
 ## Project status
 Slowed down. But ongoing.
