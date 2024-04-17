@@ -16,7 +16,6 @@ import LoginPage from "./components/auth/LoginPage";
 const MainContent = () => {
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isPetFormVisible, setIsPetFormVisible] = useState(false);
-  const [isListsVisible, setIsListsVisible] = useState(false);
 
   const [showComponent, setShowComponent] = useState("default");
 

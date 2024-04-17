@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import tobiasjohansson.example.backendpetvet.models.Address;
+import tobiasjohansson.example.backendpetvet.models.Admin;
 import tobiasjohansson.example.backendpetvet.models.Owner;
 import tobiasjohansson.example.backendpetvet.models.Pet;
 import tobiasjohansson.example.backendpetvet.repositories.AddressRepository;
+import tobiasjohansson.example.backendpetvet.repositories.AdminRepository;
 import tobiasjohansson.example.backendpetvet.repositories.OwnerRepository;
 import tobiasjohansson.example.backendpetvet.repositories.PetRepository;
 
@@ -21,8 +23,18 @@ public class Bootstrap implements CommandLineRunner {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private AdminRepository adminRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        // ADMIN LOGIN CREDENTIALS
+        Admin admin = new Admin();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+        adminRepository.save(admin);
+
         Address address1 = new Address();
         address1.setPhone(0761234562);
         address1.setStreet("Varberg");
@@ -67,15 +79,3 @@ public class Bootstrap implements CommandLineRunner {
 
     }
 }
-/*
-
-
-        pet1.setOwner(owner1);
-        petRepository.save(pet1);
-
-        pet2.setOwner(owner2);
-        petRepository.save(pet2);
-
-
-
-* */
