@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -13,9 +13,12 @@ import {
   Avatar,
   FormControl,
   FormHelperText,
+  Text,
   InputRightElement,
+  Alert,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { getAdmins } from "../../services/api/crud-admin";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -23,10 +26,45 @@ const CFaLock = chakra(FaLock);
 interface Props {
   handleLogin: () => void;
 }
+
+interface Admin {
+  username: string;
+  password: string;
+}
 const LoginPage = ({ handleLogin }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
-
   const handleShowClick = () => setShowPassword(!showPassword);
+  const [adminList, setAdminList] = useState<Admin[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      try {
+        const admins = await getAdmins();
+        setAdminList(admins);
+      } catch (error) {
+        console.error("Error fetching admins:", error);
+      }
+    };
+
+    fetchAdmins();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const foundAdmin = adminList.find((admin) => {
+      return admin.username === username && admin.password === password;
+    });
+    console.log(foundAdmin);
+    if (foundAdmin) {
+      handleLogin();
+    } else {
+      setErrorMessage("Wrong username or password");
+    }
+  };
 
   return (
     <Flex
@@ -37,6 +75,8 @@ const LoginPage = ({ handleLogin }: Props) => {
       justifyContent="center"
       alignItems="center"
     >
+      {showAlert && <Alert>Call for support!</Alert>}
+
       <Stack
         flexDir="column"
         mb="2"
@@ -44,9 +84,9 @@ const LoginPage = ({ handleLogin }: Props) => {
         alignItems="center"
       >
         <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
+        <Heading color="teal.400">PetVet</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-          <form>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <Stack
               spacing={4}
               p="1rem"
@@ -59,7 +99,12 @@ const LoginPage = ({ handleLogin }: Props) => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="email address" />
+                  <Input
+                    type="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -72,6 +117,8 @@ const LoginPage = ({ handleLogin }: Props) => {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -79,8 +126,15 @@ const LoginPage = ({ handleLogin }: Props) => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
+                {errorMessage && (
+                  <Box>
+                    <Text color="red">{errorMessage}</Text>
+                  </Box>
+                )}
                 <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
+                  <Link onClick={() => setShowAlert((prev) => !prev)}>
+                    forgot password?
+                  </Link>
                 </FormHelperText>
               </FormControl>
               <Button
@@ -89,7 +143,6 @@ const LoginPage = ({ handleLogin }: Props) => {
                 variant="solid"
                 colorScheme="teal"
                 width="full"
-                onClick={handleLogin}
               >
                 Login
               </Button>
